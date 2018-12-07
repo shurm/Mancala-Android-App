@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    android:background="#FFD8AE">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+       >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp">
+
+            <TextView
+                android:id="@+id/Title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Mancala Game Rules"
+                android:textColor="@android:color/black"
+                android:textSize="36sp"
+                android:textStyle="bold"
+                />
+
+            <TextView
+                android:id="@+id/Setup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:text="Setup:"
+                android:textColor="@android:color/black"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/setup_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="The Mancala 'board' is made up of two rows of six holes or pits. The six small holes on your side of the gameboard belong to you. Each player places 4 stones (of every color) in each of his 6 small cups. Your scoring cup (a.k.a. your mancala) is to the right of your pits. "
+                android:textColor="@android:color/black"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/Objective"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:text="Object of the game:"
+                android:textColor="@android:color/black"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/objective_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:text="Have more stones in your mancala than your opponent's mancala at the end of the game."
+                android:textColor="@android:color/black"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/GamePlay"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:text="Game Play:"
+                android:textColor="@android:color/black"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/gameplay_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/black"
+                android:textSize="18sp"
+                android:text="Choose a player to start and he will pick up all the pieces in any one of the holes/pits on his side.  In a counter-clockwise direction, deposit one stone into each hole (including your mancala), but not your opponent's mancala until he run out of stones.  If you run into your own mancala, deposit one stone in it. If you run into your opponent's mancala, skip it.  If the last stone you drop is in your own mancala, you get a free turn. Otherwise, the game continues with players alternating turns." />
+
+            <TextView
+                android:id="@+id/Capturing"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:textColor="@android:color/black"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:text="Capturing:" />
+
+            <TextView
+                android:id="@+id/capturing_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/black"
+                android:textSize="18sp"
+                android:text="If you place the last stone if your turn into an empty hole on your side of the board, you capture all of the pieces in the hole directly across from it on your opponent's side of the board.  Take all the captured stones and place them in your mancala." />
+
+            <TextView
+                android:id="@+id/Endgame"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:textColor="@android:color/black"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:text="Endgame conditions and rules:" />
+
+            <TextView
+                android:id="@+id/endgame_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/black"
+                android:textSize="18sp"
+                android:text="As soon as all the small six holes on one side of the board have been emptied, the game ends.  The player who still has stones on his side of the board when the game ends collects all of those stones into his mancala.  The players now count their stones in their mancala and the player with the most stones wins the game." />
+
+        </LinearLayout>
+    </ScrollView>
+</android.support.constraint.ConstraintLayout>

@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<FrameLayout  xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:keepScreenOn="true"
+    android:id="@+id/frontMostLayout"
+    android:background="#FFD8AE"
+    >
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:dividerPadding="0dp"
+            >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingLeft="10dp"
+
+                android:weightSum="3">
+
+                <EditText
+                    android:id="@+id/player1_name"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom|start"
+                    android:layout_marginBottom="0dp"
+                    android:layout_marginTop="1dp"
+                    android:layout_weight="1"
+                    android:cursorVisible="false"
+                    android:fontFamily="@font/bungee"
+                    android:includeFontPadding="false"
+                    android:maxLength="8"
+                    android:maxLines="1"
+                    android:minHeight="0dip"
+                    android:paddingBottom="0dp"
+                    android:paddingLeft="0dp"
+                    android:text="Player1"
+                    android:textColor="@android:color/holo_red_dark"
+                    android:textSize="23sp"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:id="@+id/player1_turnLabel"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginBottom="0dp"
+
+                    android:layout_weight="2"
+                    android:includeFontPadding="false"
+
+                    android:minHeight="0dip"
+
+                    android:paddingBottom="0dp"
+                    android:paddingLeft="13dp"
+                    android:paddingTop="0dp"
+                    android:visibility="invisible"
+                    app:srcCompat="@drawable/turn_label1" />
+
+            </LinearLayout>
+
+            <GridLayout
+                android:id="@+id/gridLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="0dp"
+                android:layout_marginTop="0dp"
+
+                android:background="@drawable/board"
+                android:columnCount="8"
+                android:orientation="vertical"
+                android:paddingBottom="0dp"
+                android:paddingTop="0dp"
+                android:rowCount="3">
+
+
+
+            </GridLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingRight="10dp"
+                android:weightSum="3">
+
+
+                <ImageView
+                    android:id="@+id/player2_turnLabel"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginBottom="0dp"
+
+                    android:layout_weight="2"
+
+                    android:includeFontPadding="false"
+
+
+                    android:minHeight="0dip"
+                    android:paddingBottom="0dp"
+                    android:paddingLeft="13dp"
+                    android:paddingTop="0dp"
+                    app:srcCompat="@drawable/turn_label2"
+
+                    />
+
+                <EditText
+                    android:id="@+id/player2_name"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="top|end"
+                    android:layout_marginBottom="0dp"
+                    android:layout_marginTop="0dp"
+                    android:layout_weight="1"
+
+                    android:cursorVisible="false"
+                    android:fontFamily="@font/bungee"
+                    android:gravity="end"
+                    android:includeFontPadding="false"
+
+                    android:maxLength="8"
+                    android:maxLines="1"
+                    android:minHeight="0dip"
+                    android:paddingBottom="0dp"
+                    android:paddingTop="0dp"
+                    android:text="Player2"
+                    android:textAlignment="textEnd"
+                    android:textColor="#4633ff"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/animationMarble" />
+</FrameLayout >
