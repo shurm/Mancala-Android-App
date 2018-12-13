@@ -46,7 +46,8 @@
                     android:text="Player1"
                     android:textColor="@android:color/holo_red_dark"
                     android:textSize="23sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:imeOptions="actionDone"/>
 
                 <ImageView
                     android:id="@+id/player1_turnLabel"
@@ -137,7 +138,8 @@
                     android:textAlignment="textEnd"
                     android:textColor="#4633ff"
                     android:textSize="24sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:imeOptions="actionDone"/>
 
 
             </LinearLayout>
