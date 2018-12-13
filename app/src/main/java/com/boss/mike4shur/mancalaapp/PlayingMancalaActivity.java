@@ -123,7 +123,8 @@ public class PlayingMancalaActivity extends AppCompatActivity
 
     private void testEndGameAnimation()
     {
-        Thread t = new Thread(){
+        Thread t = new Thread()
+        {
             public void run()
             {
                 try {
@@ -135,6 +136,7 @@ public class PlayingMancalaActivity extends AppCompatActivity
                     @Override
                     public void run() {
 
+                        //
                         EndgameAnimation endgameAnimation = new EndgameAnimation(uiMancalaBoard.getMovementAnimationManager());
 
                         endgameAnimation.start();
