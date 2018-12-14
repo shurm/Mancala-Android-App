@@ -2,28 +2,25 @@ package com.boss.mike4shur.mancalaapp;
 
 
 import android.os.AsyncTask;
-import android.util.Log;
 
 import com.boss.mike4shur.mancalaapp.ai.AIDifficulty;
 import com.boss.mike4shur.mancalaapp.ai.MancalaAI;
-import com.boss.mike4shur.mancalaapp.ai.RatingPackage;
 import com.boss.mike4shur.mancalaapp.board.MancalaBoard;
 
-import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
- * Class which acts as a intermediary between the Front End and AI Logic
+ * Class which acts as an intermediary between the Front End and AI Logic
  *
  * @author Michael Shur
  */
 public class MancalaAIManager
 {
 
-    //the front end which interacts with the user and displays the chessboard
+    //the front end which interacts with the user and displays the mancala board
     private PlayingMancalaActivity playingChessActivity;
 
-    private static int aiTurns = 1;
+    private static int timesAIHasGone = 1;
 
     //the task which prompts the opponent variable from the next aiMove the computer player should make
     private AIBackgroundTask task;
@@ -31,20 +28,20 @@ public class MancalaAIManager
     //determines if the computer player is currently making a aiMove
     private AtomicBoolean aisTurn = new AtomicBoolean(false);
 
-    Integer getAiRow() {
-        return aiRow;
-    }
 
-    //the row which the pits the ai controls belong to
-    private Integer aiRow;
+    //the row which the pits the ai controls
+    private Integer rowOfAI;
 
+    //
     private MancalaAI mancalaAI;
 
 
-    MancalaAIManager(PlayingMancalaActivity playingChessActivity, Integer aiRow, AIDifficulty aiDifficulty)
+    MancalaAIManager(PlayingMancalaActivity playingChessActivity, Integer rowOfAI, AIDifficulty aiDifficulty)
     {
         this.playingChessActivity = playingChessActivity;
-        this.aiRow = aiRow;
+        this.rowOfAI = rowOfAI;
+
+
         this.mancalaAI = new MancalaAI(aiDifficulty);
     }
 
@@ -83,6 +80,10 @@ public class MancalaAIManager
         aisTurn.set(false);
     }
 
+    Integer getRowOfAI() {
+        return rowOfAI;
+    }
+
 
     /*
      *  Enables the AI logic to properly affect the UI
@@ -95,7 +96,7 @@ public class MancalaAIManager
         protected Integer doInBackground(Void[] args)
         {
             MancalaBoard mancalaBoard = playingChessActivity.getBoard();
-            //System.out.println("ai has gone "+aiTurns);
+            //System.out.println("ai has gone "+timesAIHasGone);
 
             Integer move = mancalaAI.computeMove(mancalaBoard);
 
@@ -126,7 +127,7 @@ public class MancalaAIManager
             //Log.v(getClass().getName(), "ai went "+result);
             playingChessActivity.updateUIBoard(result,true);
 
-            aiTurns++;
+            timesAIHasGone++;
 
         }
     }
@@ -140,7 +141,7 @@ public class MancalaAIManager
 
 
     /**
-     * cancels AI's aiMove if AI is trying to make a aiMove
+     * if it currently the AI's turn, make AI stop thinking and abort its move
      * @return true if the AI was forced to stop, false if was not currently the AI's turn
      */
     public boolean cancelAIsMoveIfPossible()

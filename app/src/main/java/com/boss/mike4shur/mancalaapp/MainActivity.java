@@ -15,11 +15,15 @@ import android.widget.Toast;
 
 import com.boss.mike4shur.mancalaapp.ui.UITools;
 
+/**
+ *
+ * @author Michael Shur
+ */
 public class MainActivity extends AppCompatActivity
 {
 
-    private int Dialog_WIDTH;
-    private int Dialog_HEIGHT;
+    private int aiProperties_Dialog_WIDTH;
+    private int aiProperties_Dialog_HEIGHT;
 
     private Dialog aiPropertiesPopUp;
 
@@ -30,8 +34,8 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_menu);
 
-        Dialog_WIDTH = UITools.getScreenWidth(this)*8/10;
-        Dialog_HEIGHT = UITools.getScreenHeight(this)*8/10;
+        aiProperties_Dialog_WIDTH = UITools.getScreenWidth(this)*8/10;
+        aiProperties_Dialog_HEIGHT = UITools.getScreenHeight(this)*8/10;
 
         //final int MENU_TITLE_WIDTH = UITools.getScreenWidth(this)*5/7;
 
@@ -107,27 +111,34 @@ public class MainActivity extends AppCompatActivity
     }
 
 
-    /*public void testingButtonClicked(View v)
-    {
-        createAndShowAITurnDialog(true);
-    }
-*/
+    /**
+     * If Vs Computer was clicked.
+     *
+     * @param v the button that was clicked
+     */
+
     public void vsComputerClicked(View v)
     {
         createAndShowAITurnDialog(null);
     }
 
+    //Displays the Input Dialog for obtaining the properties of the ai player (i.e. its turn and difficultly)
     private void createAndShowAITurnDialog(final Boolean testing)
     {
         aiPropertiesPopUp = new Dialog(MainActivity.this);
 
         aiPropertiesPopUp.setContentView(R.layout.ai_properties_input_dialog);
 
-        aiPropertiesPopUp.getWindow().setLayout(Dialog_WIDTH, Dialog_HEIGHT);
+        aiPropertiesPopUp.getWindow().setLayout(aiProperties_Dialog_WIDTH, aiProperties_Dialog_HEIGHT);
 
         aiPropertiesPopUp.show();
     }
 
+    /**
+     * Starts the MancalaPlayingActivity and passes the properties obtaining from the ai properties dialog
+     *
+     * @param v the button that was clicked
+     */
     public void startVsComputerActivity(View v)
     {
         RadioGroup turn_options = (RadioGroup) aiPropertiesPopUp.findViewById(R.id.turn_options);
@@ -173,6 +184,11 @@ public class MainActivity extends AppCompatActivity
         startActivity(intent);
     }
 
+    /**
+     * If Pass N Play was clicked.
+     *
+     * @param v the button that was clicked
+     */
     public void passNPlayClicked(View v)
     {
         Intent intent = new Intent(this, PlayingMancalaActivity.class);
@@ -180,10 +196,20 @@ public class MainActivity extends AppCompatActivity
     }
 
 
+    /**
+     * If how to play was clicked.
+     *
+     * @param v the button that was clicked
+     */
     public void howToPlayClicked(View v)
     {
         Intent intent = new Intent(this, HowToPlayActivity.class);
         startActivity(intent);
     }
 
+    /*public void testingButtonClicked(View v)
+    {
+        createAndShowAITurnDialog(true);
+    }
+*/
 }

@@ -20,9 +20,9 @@ import com.boss.mike4shur.mancalaapp.ui.UITools;
 import com.boss.mike4shur.mancalaapp.ui.animation.EndgameAnimation;
 
 /**
- * Created by Mike 4 Shur on 2/13/2018.
+ *
+ * @author Michael Shur
  */
-
 public class PlayingMancalaActivity extends AppCompatActivity
 {
 
@@ -149,26 +149,39 @@ public class PlayingMancalaActivity extends AppCompatActivity
         t.start();
     }
 
+
     /**
+     * Checks if this game has an ai player
      *
-     * @return true if there is an ai player in this game
-     * @return false if this game is between two humans
+     * @return true if there is an ai player in this game, false if this game is: human vs human
      */
     public boolean hasAI()
     {
         return mancalaAIManager!=null;
     }
 
+
+    /**
+     * Do ai.
+     */
     public void doAI()
     {
         mancalaAIManager.performMove();
     }
 
+    /**
+     * Gets board.
+     *
+     * @return the board
+     */
     public MancalaBoard getBoard() {
         return mancalaBoard;
     }
 
 
+    /**
+     * Display winner.
+     */
     public void displayWinner()
     {
 
@@ -188,6 +201,12 @@ public class PlayingMancalaActivity extends AppCompatActivity
         }
     }
 
+    /**
+     * Displays a Dialog which states the outcome/winner of the game (example: tie, Player1 wins, etc)
+     *
+     * @param message      string detailing the outcome of the game
+     * @param messageColor the color of the message text
+     */
     public void showGameOverPopup(String message, int messageColor)
     {
         Dialog myDialog = new Dialog(this);
@@ -228,6 +247,7 @@ public class PlayingMancalaActivity extends AppCompatActivity
         });
         AlertDialog dialog = builder.create();
         dialog.show();
+
     }
 
     /**
@@ -239,6 +259,7 @@ public class PlayingMancalaActivity extends AppCompatActivity
     {
         createAndShowAlertDialog("Are you sure you want to exit this game?",new DialogInterface.OnClickListener()
         {
+
             @Override
             public void onClick(DialogInterface dialog, int id)
             {
@@ -249,21 +270,40 @@ public class PlayingMancalaActivity extends AppCompatActivity
 
     }
 
+    /**
+     * Update ui board.
+     *
+     * @param result the result
+     * @param ai     the ai
+     */
     public void updateUIBoard(Integer result, boolean ai)
     {
         uiMancalaBoard.moveMarbles(result,ai);
     }
 
 
+    /**
+     * checks if it is currently the computer ai player's turn
+     *
+     * @return true it is currently the computer's turn, false if it is currently a human player's turn,
+     */
     public boolean isAIsTurn() {
-        return ( mancalaAIManager!=null && mancalaBoard.getCurrentTurn() == mancalaAIManager.getAiRow());
+        return ( mancalaAIManager!=null && mancalaBoard.getCurrentTurn() == mancalaAIManager.getRowOfAI());
     }
 
+    /**
+     * Sets ais turn to false.
+     */
     public void setAisTurnToFalse() {
         mancalaAIManager.setAisTurnToFalse();
     }
 
 
+    /**
+     * checks if the game is over
+     *
+     * @return true if the game is over, false if the game is still being played
+     */
     public boolean gameIsOver()
     {
         return mancalaBoard.gameIsOver();

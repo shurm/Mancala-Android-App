@@ -4,9 +4,9 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
 /**
- * Created by Mike on 11/30/2018.
+ *
+ * @author Michael Shur
  */
-
 public class HowToPlayActivity extends AppCompatActivity
 {
     protected void onCreate(Bundle savedInstanceState)
