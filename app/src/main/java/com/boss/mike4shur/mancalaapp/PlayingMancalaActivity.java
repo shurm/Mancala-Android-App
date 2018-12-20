@@ -109,13 +109,13 @@ public class PlayingMancalaActivity extends AppCompatActivity
         for( int i = 0;i<firstRow.length;i++)
         {
             firstRow[i].reduceToSize(player1[i]);
-            mancalaBoard.pitsForEachPlayers[0].pits[firstRow.length -1 - i].marbleCount = player1[i];
+            mancalaBoard.pitsForEachPlayers[0].pits[firstRow.length -1 - i].setMarbleCount(player1[i]);
         }
         MancalaPitAndScoreContainer [] secondRow = uiMancalaBoard.mancalaPitAndScoreContainers[1];
         for( int i = 0;i<firstRow.length;i++)
         {
             secondRow[i].reduceToSize(player2[i]);
-            mancalaBoard.pitsForEachPlayers[1].pits[i].marbleCount = player2[i];
+            mancalaBoard.pitsForEachPlayers[1].pits[i].setMarbleCount( player2[i]);
         }
         mancalaBoard.setCurrentTurn(testTurn);
         uiMancalaBoard.displayTurnLabel();

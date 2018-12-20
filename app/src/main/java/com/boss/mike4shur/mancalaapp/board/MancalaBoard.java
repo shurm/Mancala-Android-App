@@ -2,10 +2,12 @@ package com.boss.mike4shur.mancalaapp.board;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Stack;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
- * The type Mancala board.
+ *
+ * @author Michael Shur
  */
 public class MancalaBoard
 {
@@ -35,7 +37,7 @@ public class MancalaBoard
 
     private AtomicInteger currentTurn = new AtomicInteger(0);
 
-    private MancalaBoard previousBoard = null;
+    private Stack<MancalaBoard> previousBoards = new Stack<>();
 
 
     /**
@@ -52,6 +54,8 @@ public class MancalaBoard
 
     /**
      * Instantiates a new Mancala board using the given parameters
+     *
+     * Used for testing different cases
      *
      * @param player1Pits    the player 1 pits
      * @param player2Pits    the player 2 pits
@@ -100,10 +104,10 @@ public class MancalaBoard
 
 
     /**
-     * Gets mancala count.
+     * Gets the number of marbles currently in the specified player's mancala pit
      *
      * @param playerNumber the desired player
-     * @return the number of marbles currently in the spcified player's mancala pit
+     * @return the number of marbles currently in the specified player's mancala pit
      */
     public int getMancalaCount(int playerNumber)
     {
@@ -117,7 +121,7 @@ public class MancalaBoard
      */
     public void clickMove(Integer move)
     {
-        previousBoard = this.clone();
+        previousBoards.push(this.clone());
 
         if(currentTurn.get()==0)
             move = COLUMNS-1-move;
@@ -325,13 +329,13 @@ public class MancalaBoard
     /**
      * Gets pit.
      *
-     * @param playerNumber the player number
+     * @param playerID the the player number
      * @param pitNumber    the pit number
      * @return the pit
      */
-    public int getPit(int playerNumber, int pitNumber)
+    public int getPit(int playerID, int pitNumber)
     {
-        return  pitsForEachPlayers[playerNumber].pits[pitNumber].marbleCount;
+        return  pitsForEachPlayers[playerID].pits[pitNumber].marbleCount;
     }
 
     /**
@@ -357,22 +361,25 @@ public class MancalaBoard
 
 
     /**
-     * Undo last click move.
+     * Undos the last move made by a human player.
      */
     public void undoLastClickMove()
     {
+        if(previousBoards.isEmpty())
+            return;
+        MancalaBoard previousBoard = previousBoards.pop();
+
         for(int a = 0 ; a<pitsForEachPlayers.length;a++)
-            pitsForEachPlayers[a] = previousBoard.pitsForEachPlayers[a];
+            pitsForEachPlayers[a] = previousBoard.pitsForEachPlayers[a].clone();
 
         currentTurn.set(previousBoard.getCurrentTurn());
         captureThatWasJustPerformed= previousBoard.captureThatWasJustPerformed;
 
-        previousBoard = null;
 
     }
 
     /**
-     * Sets current turn.
+     * Sets the current turn.
      *
      * @param currentTurn the current turn
      */

@@ -15,16 +15,21 @@ import com.boss.mike4shur.mancalaapp.board.MancalaBoard;
 import java.util.Stack;
 
 /**
- * Created by Mike 4 Shur on 2/2/2018.
+ * The type Ui mancala board.
  */
-
 public class UIMancalaBoard
 {
 
     private final MovementAnimationManager movementAnimationManager;
 
+    /**
+     * The constant COLUMNS.
+     */
     public static final int COLUMNS = 8;
 
+    /**
+     * The Mancala pit and score containers.
+     */
     public MancalaPitAndScoreContainer [] [] mancalaPitAndScoreContainers = new MancalaPitAndScoreContainer[MancalaBoard.PLAYERS][6];
 
     private MancalaPitAndScoreContainer [] mancalas = new MancalaPitAndScoreContainer[MancalaBoard.PLAYERS];
@@ -34,6 +39,12 @@ public class UIMancalaBoard
     private final PlayingMancalaActivity activity;
 
 
+    /**
+     * Instantiates a new Ui mancala board.
+     *
+     * @param activity   the activity
+     * @param gridLayout the grid layout
+     */
     public UIMancalaBoard(PlayingMancalaActivity activity, GridLayout gridLayout)
     {
         this.activity=activity;
@@ -161,16 +172,34 @@ public class UIMancalaBoard
         displayTurnLabel();
     }
 
+    /**
+     * Gets pit.
+     *
+     * @param row    the row
+     * @param column the column
+     * @return the pit
+     */
     public MancalaPitAndScoreContainer getPit(int row, int column)
     {
         return mancalaPitAndScoreContainers[row][column];
     }
 
+    /**
+     * Gets mancala.
+     *
+     * @param player the player
+     * @return the mancala
+     */
     public MancalaPitAndScoreContainer getMancala(int player)
     {
         return mancalas[player];
     }
 
+    /**
+     * Game is over boolean.
+     *
+     * @return the boolean
+     */
     public boolean gameIsOver()
     {
         for(MancalaPitAndScoreContainer [] row : mancalaPitAndScoreContainers)
@@ -201,10 +230,21 @@ public class UIMancalaBoard
         return movementAnimationManager.isAnimationPlaying();
     }
 
+    /**
+     * Gets movement animation manager.
+     *
+     * @return the movement animation manager
+     */
     public MovementAnimationManager getMovementAnimationManager() {
         return movementAnimationManager;
     }
 
+    /**
+     * Move marbles.
+     *
+     * @param columnSelected the column selected
+     * @param ai             the ai
+     */
     public void moveMarbles(int columnSelected, boolean ai)
     {
         int playerTurn = getCurrentTurn();
@@ -229,25 +269,48 @@ public class UIMancalaBoard
 
     }
 
+    /**
+     * Is a is turn boolean.
+     *
+     * @return the boolean
+     */
     public boolean isAIsTurn()
     {
         return activity.isAIsTurn();
     }
 
+    /**
+     * Has ai boolean.
+     *
+     * @return the boolean
+     */
     public boolean hasAI()
     {
         return activity.hasAI();
     }
 
+    /**
+     * Do ai.
+     */
     public void doAI()
     {
         activity.doAI();
     }
 
+    /**
+     * Gets current turn.
+     *
+     * @return the current turn
+     */
     public int getCurrentTurn() {
         return activity.getBoard().getCurrentTurn();
     }
 
+    /**
+     * Gets next turn.
+     *
+     * @return the next turn
+     */
     public int getNextTurn() {
         return activity.getBoard().getNextTurn();
     }
@@ -266,9 +329,18 @@ public class UIMancalaBoard
         turnLabels[otherTurn].setVisibility(View.INVISIBLE);
     }
 
+    /**
+     * Sets ais turn to false.
+     */
     public void setAisTurnToFalse() {
         activity.setAisTurnToFalse();
     }
+
+    /**
+     * Gets activity.
+     *
+     * @return the activity
+     */
     public PlayingMancalaActivity getActivity()
     {
         return activity;

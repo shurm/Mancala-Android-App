@@ -1,33 +1,63 @@
 package com.boss.mike4shur.mancalaapp.board;
 
 /**
- * Created by Mike on 8/1/2018.
+ *
+ * @author Michael Shur
  */
-
 public class Pit
 {
-    public int marbleCount;
+    /**
+     * the number osf marbles/stones currently in this pit
+     */
+    int marbleCount;
 
+    /**
+     * the column this pit is in
+     */
     private final Integer columnNumber;
 
-    private final int rowNumber;
+    /**
+     * the row this pit is in
+     */
+    private final int row;
 
+    /**
+     * boolean indicating whether this pit is a mancala.
+     */
     public final boolean isMancala;
 
-    public Pit(int initialMarbleCount, int rowNumber, Integer columnNumber)
+    /**
+     * Instantiates a new Pit.
+     *
+     * @param initialMarbleCount the initial marble count
+     * @param row    the row this pit is in
+     * @param columnNumber   the column this pit is in
+     */
+    public Pit(int initialMarbleCount, int row, Integer columnNumber)
     {
-        this(initialMarbleCount,rowNumber, columnNumber, false);
+        this(initialMarbleCount, row, columnNumber, false);
     }
 
 
-    public Pit(int initialMarbleCount, int rowNumber, Integer columnNumber, boolean isMancala )
+    /**
+     * Instantiates a new Pit.
+     *
+     * @param initialMarbleCount the initial marble count
+     * @param row  the row this pit is in
+     * @param columnNumber   the column this pit is in
+     * @param isMancala    boolean indicating whether or not this pit is a mancala.
+     */
+    public Pit(int initialMarbleCount, int row, Integer columnNumber, boolean isMancala )
     {
         this.marbleCount = initialMarbleCount;
-        this.rowNumber=rowNumber;
+        this.row = row;
         this.columnNumber=columnNumber;
         this.isMancala = isMancala;
     }
 
+    /**
+     * Increments the number of marbles/stones in this pit.
+     */
     public void incrementMarbleCount()
     {
         marbleCount++;
@@ -39,6 +69,11 @@ public class Pit
     }
 
 
+    /**
+     * Empty pit int.
+     *
+     * @return the number of marbles/stones that were in this pit
+     */
     public int emptyPit()
     {
         int temp = marbleCount;
@@ -47,6 +82,11 @@ public class Pit
     }
 
 
+    /**
+     * Adds all the marbles/stones from the given pit to this pit object and then empties the given pit
+     *
+     * @param pit the whose marbles/stones will be taken and deposited into this pit
+     */
     public void takeAllFrom(Pit pit)
     {
         marbleCount+=pit.marbleCount;
@@ -54,12 +94,33 @@ public class Pit
         pit.emptyPit();
     }
 
-    public boolean isInRow(int r)
+    /**
+     * Check if this Pit is in the given row
+     *
+     * @param rowNumber the row to be check
+     * @return true if this pit is located in rowNumber
+     */
+    public boolean isInRow(int rowNumber)
     {
-        return rowNumber==r;
+        return row == rowNumber;
     }
 
+    /**
+     * Gets position.
+     *
+     * @return the position
+     */
     public int getPosition() {
         return columnNumber;
+    }
+
+
+    /**
+     * Sets the number of marbles/stones in this pit.
+     *
+     * @param marbleCount the number of marbles/stones that will be in this pit
+     */
+    public void setMarbleCount(int marbleCount) {
+        this.marbleCount = marbleCount;
     }
 }

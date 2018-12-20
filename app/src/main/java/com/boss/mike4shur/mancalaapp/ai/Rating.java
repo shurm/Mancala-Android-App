@@ -5,9 +5,9 @@ import com.boss.mike4shur.mancalaapp.board.MancalaBoard;
 import java.util.Comparator;
 
 /**
- * Created by Mike on 11/24/2018.
+ *
+ * @author Michael Shur
  */
-
 public class Rating
 {
     /**
@@ -16,7 +16,7 @@ public class Rating
     public static final int MAX = 1000;
 
     /**
-     * sorts for best moves for player 1 (i.e index 0)
+     * used to sort so the best moves for player 1 are in descending order
      */
     public static final Comparator<RatingPackage> PLAYER_1_COMPARATOR = new Comparator<RatingPackage>() {
 
@@ -28,7 +28,7 @@ public class Rating
     };
 
     /**
-     * sorts for best moves for player 2 (i.e index 1)
+     * used to sort so the best moves for player 2 are in descending order
      */
     public static final Comparator<RatingPackage> PLAYER_2_COMPARATOR = new Comparator<RatingPackage>() {
 

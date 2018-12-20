@@ -3,10 +3,10 @@ package com.boss.mike4shur.mancalaapp.ui.animation;
 import android.animation.Animator;
 import android.animation.AnimatorSet;
 
-/**
- * Created by Mike on 3/20/2018.
- */
 
+/**
+ * The type Hopping animation set.
+ */
 public class HoppingAnimationSet
 {
 
@@ -15,6 +15,12 @@ public class HoppingAnimationSet
     private HoppingAnimationSet()
     {}
 
+    /**
+     * Create set that plays together hopping animation set.
+     *
+     * @param hoppingAnimations the hopping animations
+     * @return the hopping animation set
+     */
     public static HoppingAnimationSet createSetThatPlaysTogether(HoppingAnimation... hoppingAnimations)
     {
         AnimatorSet animatorSet = new AnimatorSet();
@@ -33,6 +39,12 @@ public class HoppingAnimationSet
         return setThatWillPlayTogether;
     }
 
+    /**
+     * Create set that plays sequentially hopping animation set.
+     *
+     * @param hoppingAnimations the hopping animations
+     * @return the hopping animation set
+     */
     public static HoppingAnimationSet createSetThatPlaysSequentially(HoppingAnimation... hoppingAnimations)
     {
         AnimatorSet animatorSet = new AnimatorSet();
@@ -55,11 +67,20 @@ public class HoppingAnimationSet
         return setThatPlaysSequentially;
     }
 
+    /**
+     * Start the Animation Set
+     */
     public void start()
     {
         animation.start();
     }
 
+
+    /**
+     * Sets animation listener.
+     *
+     * @param listener the listener
+     */
     public void setAnimationListener(Animator.AnimatorListener listener)
     {
         animation.removeAllListeners();

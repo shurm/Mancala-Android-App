@@ -3,9 +3,9 @@ package com.boss.mike4shur.mancalaapp.ai;
 import com.boss.mike4shur.mancalaapp.board.MancalaBoard;
 
 /**
- * Created by Mike on 11/24/2018.
+ *
+ * @author Michael Shur
  */
-
 public class RatingPackage
 {
         int score;

@@ -14,10 +14,12 @@ import com.boss.mike4shur.mancalaapp.ui.UITools;
 
 import java.util.Stack;
 
-/**
- * Created by Mike on 12/4/2018.
- */
 
+/**
+ * Animation which moves a group of marbles/stones around the Mancala Board in a counter clock wise manner
+ *
+ * @author Michael Shur
+ */
 public class CounterClockwiseMovementAnimation
 {
     private HoppingAnimationSet hoppingAnimationSet;
@@ -25,6 +27,15 @@ public class CounterClockwiseMovementAnimation
     private final UIMancalaBoard uiMancalaBoard;
     private final MovementAnimationManager movementAnimationManager;
 
+    /**
+     * Instantiates a new Counter clockwise movement animation.
+     *
+     * @param marbleImagesStack         the marble images stack
+     * @param source                    the source
+     * @param destination               the destination
+     * @param defaultAnimationImageView the default animation image view
+     * @param movementAnimationManager  the movement animation manager
+     */
     public CounterClockwiseMovementAnimation( Stack<Marble> marbleImagesStack,
                                               final int source, int destination,
                                               ImageView defaultAnimationImageView,
@@ -75,6 +86,9 @@ public class CounterClockwiseMovementAnimation
 
     }
 
+    /**
+     * Start the animation.
+     */
     public void start()
     {
         hoppingAnimationSet.start();
@@ -132,6 +146,9 @@ public class CounterClockwiseMovementAnimation
         @Override
         public void onAnimationRepeat(Animator animator) {}
 
+        /**
+         * The type Single hop listener.
+         */
         public class SingleHopListener implements Animator.AnimatorListener
         {
             private ImageView stationaryImage;

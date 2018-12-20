@@ -4,10 +4,10 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.widget.ImageView;
 
-/**
- * Created by Mike on 12/3/2018.
- */
 
+/**
+ * The type Marble.
+ */
 public class Marble
 {
     private ImageView marbleImageView;
@@ -15,7 +15,14 @@ public class Marble
     private int yRelativeToPit;
 
 
-
+    /**
+     * Instantiates a new Marble.
+     *
+     * @param context        the context
+     * @param bitmap         the bitmap
+     * @param xRelativeToPit the x relative to pit
+     * @param yRelativeToPit the y relative to pit
+     */
     public Marble(Context context, Bitmap bitmap, int xRelativeToPit, int yRelativeToPit)
     {
         marbleImageView = new ImageView((context));
@@ -26,15 +33,30 @@ public class Marble
     }
 
 
+    /**
+     * Gets image view.
+     *
+     * @return the image view
+     */
     public ImageView getImageView()
     {
         return marbleImageView;
     }
 
+    /**
+     * Gets relative to pit.
+     *
+     * @return the relative to pit
+     */
     public int getxRelativeToPit() {
         return xRelativeToPit;
     }
 
+    /**
+     * Gets relative to pit.
+     *
+     * @return the relative to pit
+     */
     public int getyRelativeToPit() {
         return yRelativeToPit;
     }

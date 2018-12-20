@@ -2,10 +2,12 @@ package com.boss.mike4shur.mancalaapp.ui;
 
 import android.view.View;
 
-/**
- * Created by Mike 4 Shur on 2/1/2018.
- */
 
+/**
+ * The type Pit touch listener.
+ *
+ * @author Michael Shur
+ */
 public class PitTouchListener implements View.OnClickListener
 {
 
@@ -15,7 +17,13 @@ public class PitTouchListener implements View.OnClickListener
     private UIMancalaBoard uiMancalaBoard;
 
 
-
+    /**
+     * Instantiates a new Pit touch listener.
+     *
+     * @param uiMancalaBoard the ui mancala board
+     * @param r              the r
+     * @param c              the c
+     */
     public PitTouchListener(UIMancalaBoard uiMancalaBoard, int r , int c)
     {
         this.uiMancalaBoard=uiMancalaBoard;

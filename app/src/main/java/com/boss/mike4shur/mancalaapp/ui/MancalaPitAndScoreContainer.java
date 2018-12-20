@@ -18,10 +18,10 @@ import com.boss.mike4shur.mancalaapp.R;
 
 import java.util.Stack;
 
-/**
- * Created by Mike 4 Shur on 2/1/2018.
- */
 
+/**
+ * The type Mancala pit and score container.
+ */
 public class MancalaPitAndScoreContainer extends LinearLayout
 {
     private RelativeLayout absoluteLayout;
@@ -33,19 +33,21 @@ public class MancalaPitAndScoreContainer extends LinearLayout
 
     private final Context context;
 
+
     /**
+     * Instantiates a new Mancala pit and score container.
      *
-     * @param context
-     * @param backgroundImage
-     * @param intialMarble
-     * @param pitWidth
-     * @param pitHeight
-     * @param marbleSize
-     * @param textSize
-     * @param row
-     * @param intialMarblesSize
-     * @param showFontPadding
-     * @param onClickListener
+     * @param context           the context
+     * @param backgroundImage   the background image
+     * @param intialMarble      the intial marble
+     * @param pitWidth          the pit width
+     * @param pitHeight         the pit height
+     * @param marbleSize        the marble size
+     * @param textSize          the text size
+     * @param row               the row
+     * @param intialMarblesSize the intial marbles size
+     * @param showFontPadding   the show font padding
+     * @param onClickListener   the on click listener
      */
     public MancalaPitAndScoreContainer(Context context, Drawable backgroundImage,
                                        Bitmap intialMarble, int pitWidth, int pitHeight, int marbleSize, int textSize, int row,
@@ -131,30 +133,58 @@ public class MancalaPitAndScoreContainer extends LinearLayout
         updateMarbleCountLabel();
     }
 
+    /**
+     * Update marble count label.
+     */
     public void updateMarbleCountLabel()
     {
         mancalaScoreLabel.setText(getMarbleCount()+"");
     }
 
+    /**
+     * Sets padding top.
+     *
+     * @param paddingTop the padding top
+     */
     public void setPaddingTop(int paddingTop)
     {
         setPadding(getPaddingLeft(),paddingTop,getPaddingRight(),getPaddingBottom());
     }
 
+    /**
+     * Sets padding bottom.
+     *
+     * @param paddingBottom the padding bottom
+     */
     public void setPaddingBottom(int paddingBottom)
     {
         setPadding(getPaddingLeft(),getPaddingTop(),getPaddingRight(),paddingBottom);
     }
 
+    /**
+     * Is empty boolean.
+     *
+     * @return the boolean
+     */
     public boolean isEmpty()
     {
         return marblesInPit.size()==0;
     }
 
+    /**
+     * Gets marble count.
+     *
+     * @return the marble count
+     */
     public int getMarbleCount() {
         return marblesInPit.size();
     }
 
+    /**
+     * Gets random x value.
+     *
+     * @return the random x value
+     */
     public int getRandomXValue()
     {
         int paddingFromEdge = pitWidth*10/100;
@@ -163,6 +193,11 @@ public class MancalaPitAndScoreContainer extends LinearLayout
         return x;
     }
 
+    /**
+     * Gets random y value.
+     *
+     * @return the random y value
+     */
     public int getRandomYValue()
     {
         int paddingFromEdge = pitHeight*10/100;
@@ -171,6 +206,13 @@ public class MancalaPitAndScoreContainer extends LinearLayout
         return y;
     }
 
+    /**
+     * Add marble.
+     *
+     * @param marbleFromOtherPit the marble from other pit
+     * @param x                  the x
+     * @param y                  the y
+     */
     public void addMarble(ImageView marbleFromOtherPit, int x, int y)
     {
         RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
@@ -189,6 +231,9 @@ public class MancalaPitAndScoreContainer extends LinearLayout
         countAndDisplayMarbles();
     }
 
+    /**
+     * Empty pit.
+     */
     public void emptyPit()
     {
         while(!marblesInPit.isEmpty())
@@ -200,6 +245,11 @@ public class MancalaPitAndScoreContainer extends LinearLayout
         countAndDisplayMarbles();
     }
 
+    /**
+     * Reduce to size.
+     *
+     * @param desiredSize the desired size
+     */
     public void reduceToSize(int desiredSize)
     {
         while(marblesInPit.size()>desiredSize)
@@ -211,11 +261,21 @@ public class MancalaPitAndScoreContainer extends LinearLayout
         countAndDisplayMarbles();
     }
 
+    /**
+     * Gets marbles in pit.
+     *
+     * @return the marbles in pit
+     */
     public Stack<Marble> getMarblesInPit()
     {
         return marblesInPit;
     }
 
+    /**
+     * Gets pit layout.
+     *
+     * @return the pit layout
+     */
     public View getPitLayout()
     {
         return absoluteLayout;

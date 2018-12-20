@@ -16,6 +16,10 @@ import java.util.TreeMap;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 
+/**
+ * The type Movement animation manager.
+ * @author Michael Shur
+ */
 public class MovementAnimationManager
 {
     private static final Map<Integer, List<Integer>> specialDirectionalPitsMap = createPitsMap();
@@ -34,6 +38,12 @@ public class MovementAnimationManager
     private int turnAtTheStart;
 
 
+    /**
+     * Instantiates a new Movement animation manager.
+     *
+     * @param uIMancalaBoard the u i mancala board
+     * @param movingImage    the moving image
+     */
     MovementAnimationManager(UIMancalaBoard uIMancalaBoard, ImageView movingImage)
     {
         this.uiMancalaBoard = uIMancalaBoard;
@@ -73,6 +83,13 @@ public class MovementAnimationManager
     }
 
 
+    /**
+     * Generate and start marble animations.
+     *
+     * @param marbleStack the marble stack
+     * @param r           the r
+     * @param c           the c
+     */
     public void generateAndStartMarbleAnimations(Stack<Marble> marbleStack, int r, int c)
     {
         animationIsPlaying.set(true);
@@ -98,6 +115,13 @@ public class MovementAnimationManager
         //defaultAnimationImageView.startAnimation(movement);
     }
 
+    /**
+     * Gets next pit location.
+     *
+     * @param currentTurn the current turn
+     * @param pitLocation the pit location
+     * @return the next pit location
+     */
     public int getNextPitLocation(int currentTurn, int pitLocation)
     {
         if (specialDirectionalPitsMap.containsKey(pitLocation))
@@ -113,6 +137,12 @@ public class MovementAnimationManager
     }
 
 
+    /**
+     * Get screen location of pit int [ ].
+     *
+     * @param pitLocation the pit location
+     * @return the int [ ]
+     */
     public int[] getScreenLocationOfPit(int pitLocation)
     {
         // System.out.println("pitLocation : "+pitLocation);
@@ -120,6 +150,12 @@ public class MovementAnimationManager
         return UITools.getCoordinatesOfPit(mancalaPitAndScoreContainer);
     }
 
+    /**
+     * Gets pit container.
+     *
+     * @param pitLocation the pit location
+     * @return the pit container
+     */
     public MancalaPitAndScoreContainer getPitContainer(int pitLocation)
     {
         MancalaPitAndScoreContainer mancalaPitAndScoreContainer = null;
@@ -134,25 +170,43 @@ public class MovementAnimationManager
         return mancalaPitAndScoreContainer;
     }
 
+    /**
+     * Is animation playing boolean.
+     *
+     * @return the boolean
+     */
     public boolean isAnimationPlaying()
     {
         return animationIsPlaying.get();
     }
 
 
-
-
-
+    /**
+     * Gets ui board.
+     *
+     * @return the ui board
+     */
     public UIMancalaBoard getUIBoard()
     {
         return uiMancalaBoard;
     }
 
+    /**
+     * Get screen location of pit int [ ].
+     *
+     * @param mancalaPitAndScoreContainer the mancala pit and score container
+     * @return the int [ ]
+     */
     public int[] getScreenLocationOfPit(MancalaPitAndScoreContainer mancalaPitAndScoreContainer)
     {
         return UITools.getCoordinatesOfPit(mancalaPitAndScoreContainer);
     }
 
+    /**
+     * After marble animation.
+     *
+     * @param sourcePit the source pit
+     */
     public void afterMarbleAnimation(MancalaPitAndScoreContainer sourcePit)
     {
         MancalaPitAndScoreContainer[] sourcePits = new MancalaPitAndScoreContainer[]{sourcePit};
@@ -160,6 +214,11 @@ public class MovementAnimationManager
         this.afterMarbleAnimation(sourcePits);
     }
 
+    /**
+     * After marble animation.
+     *
+     * @param sourcePits the source pits
+     */
     public void afterMarbleAnimation(MancalaPitAndScoreContainer... sourcePits)
     {
 

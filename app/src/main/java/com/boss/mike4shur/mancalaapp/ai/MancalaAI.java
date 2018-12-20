@@ -7,9 +7,9 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * Created by Mike 4 Shur on 1/31/2018.
+ *
+ * @author Michael Shur
  */
-
 public class MancalaAI
 {
     private static final int MAXIMIZING_PLAYER = 0;

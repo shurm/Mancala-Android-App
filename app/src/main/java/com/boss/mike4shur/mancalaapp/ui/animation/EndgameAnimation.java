@@ -16,10 +16,12 @@ import com.boss.mike4shur.mancalaapp.ui.UITools;
 
 import java.util.Stack;
 
-/**
- * Created by Mike on 12/5/2018.
- */
 
+/**
+ * The animation that occurs that the game's conclusion, when one row of pits contains no marbleswhich moves all of the marbles/stones in a particular row to its Mancala Pit Board
+ *
+ * @author Michael Shur
+ */
 public class EndgameAnimation
 {
 
@@ -29,6 +31,11 @@ public class EndgameAnimation
 
     private HoppingAnimationSet hoppingAnimationSet;
 
+    /**
+     * Instantiates a new Endgame animation.
+     *
+     * @param movementAnimationManager the movement animation manager
+     */
     public EndgameAnimation(MovementAnimationManager movementAnimationManager)
     {
         this.movementAnimationManager = movementAnimationManager;
@@ -106,6 +113,9 @@ public class EndgameAnimation
         return null;
     }
 
+    /**
+     * Start.
+     */
     public void start()
     {
         hoppingAnimationSet.start();

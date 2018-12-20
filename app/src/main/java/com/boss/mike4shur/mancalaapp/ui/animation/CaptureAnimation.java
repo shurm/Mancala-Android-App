@@ -14,10 +14,10 @@ import com.boss.mike4shur.mancalaapp.ui.UITools;
 
 import java.util.Stack;
 
-/**
- * Created by Mike on 12/4/2018.
- */
 
+/**
+ * The type Capture animation.
+ */
 public class CaptureAnimation
 {
     private final HoppingAnimationSet hoppingAnimationSet;
@@ -26,6 +26,13 @@ public class CaptureAnimation
 
     private final UIMancalaBoard uiMancalaBoard;
 
+    /**
+     * Instantiates a new Capture animation.
+     *
+     * @param capturedColumn           the captured column
+     * @param movementAnimationManager the movement animation manager
+     * @param sourcePit                the source pit
+     */
     public CaptureAnimation(int capturedColumn, MovementAnimationManager movementAnimationManager,
                             MancalaPitAndScoreContainer sourcePit)
     {
@@ -74,6 +81,9 @@ public class CaptureAnimation
         sourcePit.emptyPit();
     }
 
+    /**
+     * Start.
+     */
     public void start()
     {
         hoppingAnimationSet.start();

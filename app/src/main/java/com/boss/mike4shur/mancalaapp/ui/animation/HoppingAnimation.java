@@ -7,14 +7,27 @@ import android.widget.ImageView;
 
 import com.boss.mike4shur.mancalaapp.ui.UITools;
 
+/**
+ * The type Hopping animation.
+ */
 public class HoppingAnimation
 {
     //how long the the individual hoppping animations will be
     private static final int DURATION = 600;
 
+    /**
+     * The Animation.
+     */
     AnimatorSet animation = new AnimatorSet();
 
 
+    /**
+     * Instantiates a new Hopping animation.
+     *
+     * @param locationWhereAnimationWillEnd   the location where animation will end
+     * @param locationWhereAnimationWillStart the location where animation will start
+     * @param movingImage                     the moving image
+     */
     public HoppingAnimation(int[] locationWhereAnimationWillEnd, int[] locationWhereAnimationWillStart, ImageView movingImage)
     {
 
@@ -67,20 +80,38 @@ public class HoppingAnimation
         return animatorSet;
     }
 
+    /**
+     * Start.
+     */
     public void start() {
         animation.start();
     }
 
 
+    /**
+     * Sets duration.
+     *
+     * @param duration the duration
+     */
     public void setDuration(long duration) {
         animation.setDuration(duration);
     }
 
+    /**
+     * Sets start delay.
+     *
+     * @param delay the delay
+     */
     public void setStartDelay(long delay) {
         animation.setStartDelay(delay);
     }
 
 
+    /**
+     * Sets animation listener.
+     *
+     * @param listener the listener
+     */
     public void setAnimationListener(Animator.AnimatorListener listener)
     {
         animation.removeAllListeners();

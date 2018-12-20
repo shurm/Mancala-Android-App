@@ -1,12 +1,15 @@
 package com.boss.mike4shur.mancalaapp.ai;
 
 /**
- * Created by Mike on 11/28/2018.
+ *
+ * @author Michael Shur
  */
-
 public enum AIDifficulty
 {
+
     EASY(1,4), MEDIUM(0,3), HARD(0,1), IMPOSSIBLE(0,0);
+
+    private final int rangeStart, rangeEnd;
 
     AIDifficulty(int rangeStart, int rangeEnd)
     {
@@ -24,6 +27,5 @@ public enum AIDifficulty
     public int getRangeEnd() {
         return rangeEnd;
     }
-    private final int rangeStart, rangeEnd;
 
 }
