@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.TypedValue;
+import android.view.View;
 import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.GridLayout;
@@ -33,6 +34,8 @@ public class PlayingMancalaActivity extends AppCompatActivity
     private UIMancalaBoard uiMancalaBoard;
 
     private EditText player1Name, player2Name;
+
+    private Dialog gameOverDialog = null;
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -40,7 +43,6 @@ public class PlayingMancalaActivity extends AppCompatActivity
         setContentView(R.layout.playing_mancala);
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
 
-        mancalaBoard = new MancalaBoard();
 
         player1Name = findViewById(R.id.player1_name);
         player2Name = findViewById(R.id.player2_name);
@@ -83,18 +85,30 @@ public class PlayingMancalaActivity extends AppCompatActivity
 
         }
 
+        playAgain(null);
+        //testUsingSpecificPitValue()
+
+       //testEndGameAnimation();
+    }
+
+    public void playAgain(View v)
+    {
+        if(gameOverDialog!=null)
+        {
+            gameOverDialog.dismiss();
+            gameOverDialog = null;
+        }
+
         GridLayout gridLayout = findViewById(R.id.gridLayout);
 
+        mancalaBoard = new MancalaBoard();
+        gridLayout.removeAllViews();
         uiMancalaBoard = new UIMancalaBoard(this, gridLayout);
 
         if(isAIsTurn())
         {
             doAI();
         }
-
-        //testUsingSpecificPitValue()
-
-        //testEndGameAnimation();
     }
 
     //Test cases
@@ -184,21 +198,24 @@ public class PlayingMancalaActivity extends AppCompatActivity
      */
     public void displayWinner()
     {
-
+        String message = "";
+        int color;
         if(mancalaBoard.getMancalaCount(0)>mancalaBoard.getMancalaCount(1))
         {
-            showGameOverPopup(player1Name.getText().toString()+" Wins", player1Name.getCurrentTextColor());
+            message = player1Name.getText().toString()+" Wins";
+            color = player1Name.getCurrentTextColor();
         }
         else if (mancalaBoard.getMancalaCount(0)<mancalaBoard.getMancalaCount(1))
         {
-            showGameOverPopup(player2Name.getText().toString()+" Wins",  player2Name.getCurrentTextColor());
+            message = player2Name.getText().toString()+" Wins";
+            color = player2Name.getCurrentTextColor();
         }
         else
         {
-            showGameOverPopup("It's a tie!",Color.GRAY);
-            //showGameOverPopup(player2Name.getText().toString()+" Wins",  player2Name.getCurrentTextColor());
-
+            message = "It's a tie!";
+            color = Color.GRAY;
         }
+        gameOverDialog = showGameOverPopup(message, color);
     }
 
     /**
@@ -207,7 +224,7 @@ public class PlayingMancalaActivity extends AppCompatActivity
      * @param message      string detailing the outcome of the game
      * @param messageColor the color of the message text
      */
-    public void showGameOverPopup(String message, int messageColor)
+    public Dialog showGameOverPopup(String message, int messageColor)
     {
         Dialog myDialog = new Dialog(this);
 
@@ -231,7 +248,7 @@ public class PlayingMancalaActivity extends AppCompatActivity
         txtclose.setTextColor(messageColor);
         txtclose.setText(message);
 
-
+        return myDialog;
     }
 
     private void createAndShowAlertDialog(String prompt, DialogInterface.OnClickListener yesListener)
