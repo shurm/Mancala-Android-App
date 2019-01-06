@@ -1,5 +1,7 @@
 package com.boss.mike4shur.mancalaapp.ai;
 
+import android.util.Log;
+
 import com.boss.mike4shur.mancalaapp.board.MancalaBoard;
 
 import java.util.ArrayList;
@@ -29,7 +31,7 @@ public class MancalaAI
 
     /* Minimax (recursive) at level of depth for maximizing or minimizing player
     with alpha-beta pruning.  */
-    private RatingPackage minimax(MancalaBoard board, int depth, int alpha, int beta)
+    private RatingPackage minimax(MancalaBoard board, int depth, int sameTurn, int alpha, int beta)
     {
         // Generate possible next moves in a list
         List<Integer> nextMoves = board.generateLegalMoves();
@@ -37,12 +39,15 @@ public class MancalaAI
         if (nextMoves.isEmpty() || depth == 0)
         {
             // Gameover or depth reached, evaluate score
-            int score = Rating.evaluateBoard(board, nextMoves.isEmpty());
+            int score = Rating.evaluateBoard(board, nextMoves.isEmpty(), depth, sameTurn);
             return new RatingPackage(score ,-1, board);
         }
         else
         {
             RatingPackage bestResult = new RatingPackage(0,-1,null);
+
+            //if(nextMoves.size()==1)
+              //  nextMoves.size();
             for (int move : nextMoves)
             {
                 MancalaBoard nextBoard = board.clone();
@@ -50,12 +55,17 @@ public class MancalaAI
                 //try this move for the current "player"
                 nextBoard.aiMove(move);
 
-                RatingPackage score = minimax(nextBoard,depth - 1, alpha, beta);
+                RatingPackage score = minimax(nextBoard,depth - 1, (board.getCurrentTurn() == nextBoard.getCurrentTurn()) ? sameTurn+1 : 0, alpha, beta);
 
                 if (board.getCurrentTurn() == MAXIMIZING_PLAYER) {  // is maximizing player
 
                     if (score.score > alpha) {
                         alpha = score.score;
+                        bestResult.move = move;
+                        bestResult.board = score.board;
+                    }
+                    else if(bestResult.board == null)
+                    {
                         bestResult.move = move;
                         bestResult.board = score.board;
                     }
@@ -66,6 +76,11 @@ public class MancalaAI
                         bestResult.move = move;
                         bestResult.board = score.board;
                     }
+                    else if(bestResult.board == null)
+                    {
+                        bestResult.move = move;
+                        bestResult.board = score.board;
+                    }
                 }
 
 
@@ -73,7 +88,13 @@ public class MancalaAI
                 if (alpha >= beta)
                     break;
             }
+
             bestResult.score = (board.getCurrentTurn() == MAXIMIZING_PLAYER) ? alpha : beta;
+            if(bestResult.board==null && bestResult.score%Rating.MAX!=0)
+            {
+                throw new RuntimeException(bestResult.toString());
+                // bestResult.board.toString();
+            }
             return bestResult;
         }
     }
@@ -95,15 +116,15 @@ public class MancalaAI
 
         List<Integer> legalMoves = board.generateLegalMoves();
 
-        final int alpha = -1 * Rating.MAX;
-        final int beta = Rating.MAX;
+        final int alpha = -2 * Rating.MAX;
+        final int beta = 2 * Rating.MAX;
 
         for (int move :legalMoves)
         {
             MancalaBoard nextBoard = board.clone();
             nextBoard.aiMove(move);
 
-            RatingPackage ratedMove = minimax(nextBoard, DEPTH-1, alpha,  beta);
+            RatingPackage ratedMove = minimax(nextBoard, DEPTH-1, 0, alpha,  beta);
             ratedMove.move = move;
             ratedLegalMoves.add(ratedMove);
         }
@@ -129,6 +150,7 @@ public class MancalaAI
         if(ratedPossibleMoves.isEmpty())
             return null;
 
+        Log.v("ai testing", ratedPossibleMoves.toString());
         int range = (aiDifficulty.getRangeEnd() - aiDifficulty.getRangeStart() + 1);
 
         int randomMoveWithinRange = (int)(Math.random()*range) + aiDifficulty.getRangeStart();

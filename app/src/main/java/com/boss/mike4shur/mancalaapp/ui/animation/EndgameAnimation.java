@@ -118,7 +118,8 @@ public class EndgameAnimation
      */
     public void start()
     {
-        hoppingAnimationSet.start();
+        if(hoppingAnimationSet!=null)
+            hoppingAnimationSet.start();
     }
 
     private HoppingAnimation computeHoppingAnimation(MancalaPitAndScoreContainer pit, Marble marble, CaptureAnimationListener captureAnimationListener, Stack<ImageView> temporaryImages, ViewGroup frontMostLayout, MancalaPitAndScoreContainer mancalaPitOfCapturer)

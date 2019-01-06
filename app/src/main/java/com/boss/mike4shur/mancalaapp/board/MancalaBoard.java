@@ -387,4 +387,9 @@ public class MancalaBoard
     {
         this.currentTurn.set(currentTurn);
     }
+
+    public void setMancalaCount(int playerNumber, int marbleCount)
+    {
+        pitsForEachPlayers[playerNumber].mancalaPit.setMarbleCount(marbleCount);
+    }
 }

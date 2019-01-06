@@ -44,9 +44,10 @@ public class Rating
      * how good/bad it is for each player
      * @param mancalaBoard the provided MancalaBoard
      * @param isGameOver true if the game is over, false if otherwise
+     * @param sameTurn
      * @return returns the score assigned to mancalaBoard
      */
-    public static int evaluateBoard(MancalaBoard mancalaBoard, boolean isGameOver)
+    public static int evaluateBoard(MancalaBoard mancalaBoard, boolean isGameOver, int currentDepth, int sameTurn)
     {
 
         int mancalaCountDiff  = mancalaBoard.getMancalaCount(0)-mancalaBoard.getMancalaCount(1);
@@ -55,6 +56,8 @@ public class Rating
         if(isGameOver)
         {
             int sign = (int) Math.signum(mancalaCountDiff);
+            //return sign * MAX + sign * currentDepth * 10 +  sign * sameTurn;
+
             return sign * MAX;
         }
 

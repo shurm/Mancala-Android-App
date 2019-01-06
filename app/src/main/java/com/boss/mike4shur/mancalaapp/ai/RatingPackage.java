@@ -20,6 +20,8 @@ public class RatingPackage
 
         public String toString()
         {
+            if(board == null)
+                return "\n null "+"\nscore: "+score+"\nmove: "+move+"\n";
             return "\n"+board.toString()+"\nscore: "+score+"\nmove: "+move+"\n";
         }
 

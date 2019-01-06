@@ -86,7 +86,8 @@ public class PlayingMancalaActivity extends AppCompatActivity
         }
 
         playAgain(null);
-        //testUsingSpecificPitValue()
+
+       // testUsingSpecificPitValue();
 
        //testEndGameAnimation();
     }
@@ -112,11 +113,11 @@ public class PlayingMancalaActivity extends AppCompatActivity
     }
 
     //Test cases
-    private int player1 [] = {0,1,0,2,0,0};
+    private int player1 [] = {1,2,3,4,0,0};
     private int player2 [] = {0,0,0,1,0,0};
-    private int player1Mancala = 27;
-    private int player2Mancala = 17;
-    private int testTurn = 1;
+    private int player1Mancala = 0;
+    private int player2Mancala = 7;
+    private int testTurn = 0;
     private void testUsingSpecificPitValue()
     {
         MancalaPitAndScoreContainer [] firstRow = uiMancalaBoard.mancalaPitAndScoreContainers[0];
@@ -125,12 +126,17 @@ public class PlayingMancalaActivity extends AppCompatActivity
             firstRow[i].reduceToSize(player1[i]);
             mancalaBoard.pitsForEachPlayers[0].pits[firstRow.length -1 - i].setMarbleCount(player1[i]);
         }
+        uiMancalaBoard.getMancala(0).reduceToSize(player1Mancala);
+        mancalaBoard.setMancalaCount(0,player1Mancala);
         MancalaPitAndScoreContainer [] secondRow = uiMancalaBoard.mancalaPitAndScoreContainers[1];
         for( int i = 0;i<firstRow.length;i++)
         {
             secondRow[i].reduceToSize(player2[i]);
             mancalaBoard.pitsForEachPlayers[1].pits[i].setMarbleCount( player2[i]);
         }
+        uiMancalaBoard.getMancala(1).reduceToSize(player1Mancala);
+        mancalaBoard.setMancalaCount(1,player1Mancala);
+
         mancalaBoard.setCurrentTurn(testTurn);
         uiMancalaBoard.displayTurnLabel();
     }
